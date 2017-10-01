@@ -14,10 +14,13 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 
-app.post('/', (req, res) => {
-  console.log("post");
-  console.log(req.body);
+app.get('/recv', function (req, res) {
+  res.send(JSON.stringify(history));
+})
+
+app.post('/send', (req, res) => {
   // console.log(req.body);
+
   let message = {
     username: req.body.username,
     message: req.body.message,
