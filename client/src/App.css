@@ -2,27 +2,52 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.chat-container
+{
+  border: 1px solid;
+  width: 500px;
+  font-size: 14px;
+  margin: 10px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.chat-history
+{
+  border: 1px solid black;
+  margin: 10px;
+  padding: 3px;
+  width: 96%;
 }
 
-.App-title {
-  font-size: 1.5em;
+.chat-input-container
+{
+  border: 1px solid;
+  margin: 10px;
+  padding: 3px;
 }
 
-.App-intro {
-  font-size: large;
+#chat-input
+{
+  width: 300px;
+  /*padding-margin: 10px;*/
+  /*text-align: right;*/
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+#send
+{
+  width: 50px;
+  margin-left: 10px;
+}
+
+.chat-history-username
+{
+  margin: 0;
+  width: 20%;
+  border: 1px solid black;
+}
+
+.chat-history-text
+{
+  margin: 0;
+  width: 80%;
+  border: 1px solid black;
 }
