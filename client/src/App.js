@@ -40,18 +40,22 @@ class App extends Component {
     super(props);
     this.state = {
       history: [
-        {
-          key: 1,
-          username: 'username',
-          message: 'some message text',
-        },
-        {
-          key: 2,
-          username: 'username2',
-          message: 'some message text2',
-        },
       ],
     };
+  }
+
+  componentDidMount() {
+    this.pullState();
+  }
+
+  pullState()
+  {
+    fetch('http://localhost:3001/recv')
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      this.setState({history: data});
+    });
   }
 
   render() {
