@@ -29,7 +29,7 @@ app.get('/recv', function (req, res) {
 
 app.post('/send', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  // console.log(req.body);
+  console.log(req.body);
 
   let message = {
     username: req.body.username,

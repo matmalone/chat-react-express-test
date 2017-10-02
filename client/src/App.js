@@ -40,8 +40,9 @@ class App extends Component {
     super(props);
     this.state = {
       history: [],
-      message: null,
+      message: "",
     };
+    this.handleMessageChange = this.handleMessageChange.bind(this);
   }
 
   componentDidMount() {
@@ -61,7 +62,47 @@ class App extends Component {
     }), 3000);
   }
 
-  
+  pushMessage()
+  {
+    const message = this.state.message;
+    console.log("pushMessage() " + message);
+    const url = 'http://localhost:3001/send';
+    // The data we are going to send in our request
+    let data = {
+      username: 'mmalone',
+      message: message,
+    }
+    // The parameters we are gonna pass to the fetch function
+    let fetchData = { 
+      method: 'POST', 
+      body: JSON.stringify(data),
+      headers: {
+        // 'Accept': 'application/json, text/plain, */*',
+        'Content-Type':'application/x-www-form-urlencoded',
+      },
+    }
+    console.log(fetchData);
+
+    fetch(url, {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(res=>res.json())
+      .then(res => console.log(res));
+
+    // fetch(url, fetchData)
+    // .then(function() {
+    //     // Handle response you get from the server
+    //     this.setState({message: ''});
+    // }.bind(this));
+  }
+
+  handleMessageChange(event) {
+    this.setState({message: event.target.value});
+  }
 
   render() {
     const history = this.state.history;
@@ -72,8 +113,11 @@ class App extends Component {
           history={history}
         />
         <div className="chat-input-container">
-          <input type="text" id="chat-input" />
-          <button id="send">Send</button>
+          <input type="text" id="chat-input" 
+            value={this.state.message}
+            onChange={this.handleMessageChange}
+          />
+          <button id="send" onClick={() => {this.pushMessage()} }>Send</button>
         </div>
       </div>
     );
