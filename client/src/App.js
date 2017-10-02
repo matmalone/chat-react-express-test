@@ -39,8 +39,8 @@ class App extends Component {
   {
     super(props);
     this.state = {
-      history: [
-      ],
+      history: [],
+      message: null,
     };
   }
 
@@ -56,7 +56,12 @@ class App extends Component {
       console.log(data);
       this.setState({history: data});
     });
+    setTimeout((() => {
+      this.pullState();
+    }), 3000);
   }
+
+  
 
   render() {
     const history = this.state.history;
