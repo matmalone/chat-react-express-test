@@ -3,10 +3,10 @@ const app = express()
 const port = 3001;
 
 var bodyParser = require('body-parser')
-// app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-}));
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+// app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+//   extended: true
+// }));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -29,6 +29,7 @@ app.get('/recv', function (req, res) {
 
 app.post('/send', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
+  
   console.log(req.body);
 
   let message = {

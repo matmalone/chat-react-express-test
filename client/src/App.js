@@ -65,24 +65,13 @@ class App extends Component {
   pushMessage()
   {
     const message = this.state.message;
-    console.log("pushMessage() " + message);
     const url = 'http://localhost:3001/send';
     // The data we are going to send in our request
     let data = {
       username: 'mmalone',
       message: message,
     }
-    // The parameters we are gonna pass to the fetch function
-    let fetchData = { 
-      method: 'POST', 
-      body: JSON.stringify(data),
-      headers: {
-        // 'Accept': 'application/json, text/plain, */*',
-        'Content-Type':'application/x-www-form-urlencoded',
-      },
-    }
-    console.log(fetchData);
-
+ 
     fetch(url, {
       method: 'post',
       headers: {
@@ -90,14 +79,12 @@ class App extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    }).then(res=>res.json())
-      .then(res => console.log(res));
-
-    // fetch(url, fetchData)
-    // .then(function() {
-    //     // Handle response you get from the server
-    //     this.setState({message: ''});
-    // }.bind(this));
+    })
+    .then(res=>res.json())
+    .then(res => console.log(res));
+    this.setState({
+      message: '',
+    });
   }
 
   handleMessageChange(event) {
