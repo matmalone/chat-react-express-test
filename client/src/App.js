@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 class ChatHistory extends Component
@@ -7,20 +7,20 @@ class ChatHistory extends Component
   render()
   {
     const history = this.props.history;
-    const messages = history.map((k, v) => {
-      // return ()
+    const messages = history.map((envelope, k) => {
+      return (
+        <tr key={envelope.key}>
+          <td className="chat-history-username">{envelope.username}</td>
+          <td className="chat-history-text">{envelope.message}</td>
+        </tr>
+        )
     });
 
     return (        
       <table className="chat-history">
-        <tr>
-          <td className="chat-history-username">username</td>
-          <td className="chat-history-text">some history text</td>
-        </tr>
-        <tr>
-          <td className="chat-history-username">username2</td>
-          <td className="chat-history-text">some history text  2</td>
-        </tr>
+        <tbody>
+          {messages}
+        </tbody>
       </table>
     );
   }
@@ -33,10 +33,12 @@ class App extends Component {
     this.state = {
       history: [
         {
+          key: 1,
           username: 'username',
           message: 'some message text',
         },
         {
+          key: 2,
           username: 'username2',
           message: 'some message text2',
         },
