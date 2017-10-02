@@ -6,8 +6,16 @@ class ChatHistory extends Component
 {
   render()
   {
-    const history = this.props.history;
-    const messages = history.map((envelope, k) => {
+    if (this.props.history && this.props.history.length > 0)
+      return this.buildPopulatedHistory();
+    else
+      return <div>No chat conversation yet</div>;
+  }
+
+  buildPopulatedHistory()
+  {
+    // const history = this.props.history;
+    const messages = this.props.history.map((envelope, k) => {
       return (
         <tr key={envelope.key}>
           <td className="chat-history-username">{envelope.username}</td>
