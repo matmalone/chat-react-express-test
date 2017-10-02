@@ -16,15 +16,18 @@ app.get('/', function (req, res) {
 })
 
 app.get('/recv', function (req, res) {
+  res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(history));
 })
 
 app.post('/send', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
   // console.log(req.body);
 
   let message = {
     username: req.body.username,
     message: req.body.message,
+    key: history.length + 1,
   };
 
   let len = history.push(message);
