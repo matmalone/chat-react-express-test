@@ -53,13 +53,8 @@ class App extends Component {
   {
     fetch('http://localhost:3001/recv')
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      this.setState({history: data});
-    });
-    setTimeout((() => {
-      this.pullState();
-    }), 3000);
+    .then((data) => this.setState({history: data}));
+    setTimeout(() => this.pullState(), 1000);
   }
 
   pushMessage()
@@ -80,8 +75,8 @@ class App extends Component {
       },
       body: JSON.stringify(data)
     })
-    .then(res=>res.json())
-    .then(res => console.log(res));
+    .then(res => res.json())
+    // .then(res => console.log(res));
     this.setState({
       message: '',
     });
